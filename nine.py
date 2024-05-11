@@ -45,6 +45,23 @@ def expand(node, size, visited):
                 new_nodes.append(make_node(new_state, node, node['cost'] + 1, node['depth'] + 1))
     return new_nodes
 
+def get_user_input():
+    size = int(input("Enter puzzle size 3 for 3x3, 4 for 4x4): "))
+    initial_state = []
+    print("Enter the initial state of the puzzle (use 0 for the blank):")
+    for i in range(size):
+        row = input(f"Enter row {i + 1} (space-separated numbers): ")
+        initial_state.append(tuple(map(int, row.split())))
+
+    if len(initial_state) != size or any(len(row) != size for row in initial_state):
+        raise ValueError("The size of the puzzle does not match the input rows. Please check your input.")
+
+    initial_state = tuple(initial_state)
+    print("Choose the search method: 1 for UCS, 2 for A* Misplaced Tile, 3 for A* Manhattan Distance")
+    choice = int(input("Your choice: "))
+    return initial_state, choice, size
+
+
 def heuristic_misplaced_tiles(state, goal_state, size):
     return sum(1 for i in range(size) for j in range(size) if state[i][j] != 0 and state[i][j] != goal_state[i][j])
 
