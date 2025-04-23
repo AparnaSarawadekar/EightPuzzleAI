@@ -20,6 +20,7 @@ It is also **easily extendable** to support N-puzzles (e.g., 3x3, 4x4, etc.).
 - No external dependencies (uses only standard library)
 
 ### ▶️ How to Run
-
+- Run the file nine.py
+- Rest of the files show my approach towards the final answer ( one.py to eight.py ) 
 ```bash
 python nine.py
